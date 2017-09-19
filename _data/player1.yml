@@ -1,3 +1,5 @@
 name: “Bob Ralderstone"
 matches:
 - rock
+- paper
+- scissors
