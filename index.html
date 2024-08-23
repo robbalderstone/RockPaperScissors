@@ -48,6 +48,12 @@
       border-width: 1px;
       padding: 3px;
       }
+
+      .score {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
     </style>
   </head>
   <body>
@@ -61,6 +67,9 @@
       {% else %}
         {% assign player1 = site.data.player1.matches.last %}
         {% assign player2 = site.data.player2.matches.last %}
+      <div class="score">
+        Score: {{ site.data.player1.name }} {{ site.data.player1.score }} - {{ site.data.player2.score }} {{ site.data.player2.name }}
+      </div>
       <div class="left-right-container">
         <div class="left">
           <div class="tag">
@@ -83,17 +92,21 @@
         Draw.
         {% when "paper" %}
         {{ site.data.player2.name }} won!
+        {% assign site.data.player2.score = site.data.player2.score | plus: 1 %}
         {% when "scissors" %}
         {{ site.data.player1.name }} won!
+        {% assign site.data.player1.score = site.data.player1.score | plus: 1 %}
         {% endcase %}
         {% when "paper" %}
         {% case player2 %}
         {% when "rock" %}
         {{ site.data.player1.name }} won!
+        {% assign site.data.player1.score = site.data.player1.score | plus: 1 %}
         {% when "paper" %}
         Draw.
         {% when "scissors" %}
         {{ site.data.player2.name }} won!
+        {% assign site.data.player2.score = site.data.player2.score | plus: 1 %}
         {% else %}
         foo
         {% endcase %}
@@ -101,8 +114,10 @@
         {% case player2 %}
         {% when "rock" %}
         {{ site.data.player2.name }} won!
+        {% assign site.data.player2.score = site.data.player2.score | plus: 1 %}
         {% when "paper" %}
         {{ site.data.player1.name }} won!
+        {% assign site.data.player1.score = site.data.player1.score | plus: 1 %}
         {% when "scissors" %}
         Draw.
         {% endcase %}
@@ -128,4 +143,3 @@
     </div>
   </body>
 </html>
-

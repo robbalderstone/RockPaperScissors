@@ -1,5 +1,7 @@
 name: "Dave"
+score: 0
 matches:
 - scissors
 - rock
-- paper 
+- rock
+- paper
