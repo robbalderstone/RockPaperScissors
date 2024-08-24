@@ -68,7 +68,7 @@
         {% assign player1 = site.data.player1.matches.last %}
         {% assign player2 = site.data.player2.matches.last %}
       <div class="score">
-        Score: {{ site.data.player1.name }} {{ site.data.player1.score }} - {{ site.data.player2.score }} {{ site.data.player2.name }}
+        Score: {{ site.data.player1.name }} {{ site.data.player1.wins }} - {{ site.data.player2.wins }} {{ site.data.player2.name }}
       </div>
       <div class="left-right-container">
         <div class="left">
@@ -92,21 +92,29 @@
         Draw.
         {% when "paper" %}
         {{ site.data.player2.name }} won!
-        {% assign site.data.player2.score = site.data.player2.score | plus: 1 %}
+        {% capture player2_wins %}{{ site.data.player2.wins | plus: 1 }}{% endcapture %}
+        {% assign player2_wins = player2_wins | minus: 0 %}
+        {% assign site.data.player2.wins = player2_wins %}
         {% when "scissors" %}
         {{ site.data.player1.name }} won!
-        {% assign site.data.player1.score = site.data.player1.score | plus: 1 %}
+        {% capture player1_wins %}{{ site.data.player1.wins | plus: 1 }}{% endcapture %}
+        {% assign player1_wins = player1_wins | minus: 0 %}
+        {% assign site.data.player1.wins = player1_wins %}
         {% endcase %}
         {% when "paper" %}
         {% case player2 %}
         {% when "rock" %}
         {{ site.data.player1.name }} won!
-        {% assign site.data.player1.score = site.data.player1.score | plus: 1 %}
+        {% capture player1_wins %}{{ site.data.player1.wins | plus: 1 }}{% endcapture %}
+        {% assign player1_wins = player1_wins | minus: 0 %}
+        {% assign site.data.player1.wins = player1_wins %}
         {% when "paper" %}
         Draw.
         {% when "scissors" %}
         {{ site.data.player2.name }} won!
-        {% assign site.data.player2.score = site.data.player2.score | plus: 1 %}
+        {% capture player2_wins %}{{ site.data.player2.wins | plus: 1 }}{% endcapture %}
+        {% assign player2_wins = player2_wins | minus: 0 %}
+        {% assign site.data.player2.wins = player2_wins %}
         {% else %}
         foo
         {% endcase %}
@@ -114,10 +122,14 @@
         {% case player2 %}
         {% when "rock" %}
         {{ site.data.player2.name }} won!
-        {% assign site.data.player2.score = site.data.player2.score | plus: 1 %}
+        {% capture player2_wins %}{{ site.data.player2.wins | plus: 1 }}{% endcapture %}
+        {% assign player2_wins = player2_wins | minus: 0 %}
+        {% assign site.data.player2.wins = player2_wins %}
         {% when "paper" %}
         {{ site.data.player1.name }} won!
-        {% assign site.data.player1.score = site.data.player1.score | plus: 1 %}
+        {% capture player1_wins %}{{ site.data.player1.wins | plus: 1 }}{% endcapture %}
+        {% assign player1_wins = player1_wins | minus: 0 %}
+        {% assign site.data.player1.wins = player1_wins %}
         {% when "scissors" %}
         Draw.
         {% endcase %}
